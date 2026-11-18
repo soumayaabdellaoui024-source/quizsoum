@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17113b">
+<title>Quizsoum | العب واجمع النقاط</title>
+<style>
+:root{--ink:#20194a;--purple:#5b43c7;--bg:#f5f3ff;--muted:#706b86;--green:#16865b;--line:#e9e5fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+header{background:linear-gradient(135deg,#17113b,#49339c);color:white;padding:22px 18px 28px;border-radius:0 0 27px 27px}
+.wrap{max-width:760px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.logo{font-size:24px;font-weight:950}
+.pill{font-size:11px;background:#ffffff22;border:1px solid #ffffff55;padding:6px 9px;border-radius:30px;white-space:nowrap}
+.hero{margin-top:22px}.hero h1{font-size:29px;margin:0 0 7px}.hero p{margin:0;color:#e2dcff;line-height:1.7}
+main{max-width:760px;margin:20px auto;padding:0 14px 38px}
+.panel{background:white;border:1px solid var(--line);border-radius:21px;padding:18px;box-shadow:0 8px 28px #30216b0c;margin-bottom:14px}
+h2{font-size:19px;margin:0 0 13px}
+.small{font-size:12px;color:var(--muted);line-height:1.7}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:#f7f5ff;border:1px solid #ebe6ff;border-radius:15px;padding:13px;text-align:center;font-weight:800}
+.tile span{display:block;font-size:25px;margin-bottom:5px}
+button,input{font:inherit}
+button{cursor:pointer}
+.primary{width:100%;border:0;background:var(--purple);color:white;border-radius:13px;padding:13px;font-weight:850;font-size:15px}
+.secondary{border:1px solid #ddd6fa;background:white;color:var(--purple);border-radius:12px;padding:10px 13px;font-weight:750}
+.danger{border:1px solid #f1d1d1;background:white;color:#a33;border-radius:12px;padding:9px 12px;font-weight:700}
+input{width:100%;border:1px solid #ddd7f0;border-radius:12px;padding:13px;background:#fff;color:var(--ink);margin:8px 0 12px;outline-color:var(--purple)}
+.hidden{display:none!important}
+.profile{background:#f5f2ff;border-radius:15px;padding:13px;margin-bottom:14px}
+.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:10px}
+.stat{background:#f5f2ff;border-radius:13px;padding:11px;text-align:center;font-size:12px;color:var(--muted)}
+.stat strong{display:block;color:var(--purple);font-size:22px;margin-bottom:2px}
+.adslot{border:1px dashed #c9c1e7;background:#faf9ff;border-radius:13px;padding:13px;text-align:center;color:#77718c;font-size:12px;margin:13px 0}
+.progress{height:8px;background:#eeeaf9;border-radius:10px;overflow:hidden;margin:12px 0 18px}.bar{height:100%;width:0;background:#7a63df;transition:width .2s}
+.question{font-size:21px;font-weight:850;line-height:1.55;margin:10px 0 17px}
+.answers{display:grid;gap:9px}.answer{border:1px solid #e5e0f5;background:#fff;border-radius:13px;padding:13px;text-align:right;color:var(--ink);font-weight:700}
+.answer.correct{border-color:#8ad0b2;background:#eaf8f1;color:#126a47}.answer.wrong{border-color:#f0aaaa;background:#fff0f0;color:#a52d2d}
+.feedback{min-height:27px;margin:12px 0;color:var(--muted);font-weight:700}
+.rankrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #f0edf8}
+.rankrow:last-child{border:0}.ranknum{width:30px;height:30px;border-radius:10px;background:#f1edff;display:grid;place-items:center;font-weight:900;color:var(--purple)}
+.rankname{flex:1;font-weight:750}.rankpoints{font-weight:900;color:var(--purple)}
+.result{text-align:center;padding:10px 3px}.emoji{font-size:48px}.score{font-size:39px;font-weight:950;color:var(--purple);margin:8px}
+footer{text-align:center;color:#8b86a0;font-size:11px;padding:0 18px 25px}
+@media(min-width:600px){header{padding:28px}.hero h1{font-size:35px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top"><div class="logo">Quizsoum 🎯</div><div class="pill">نسخة تجريبية 2.0</div></div>
+ <div class="hero"><h1>العب، تعلّم، واجمع النقاط! 🧠</h1><p>تحدّى روحك في أسئلة الثقافة العامة واطلع في الترتيب.</p></div>
+</div></header>
+<main>
+ <section id="login" class="panel">
+  <h2>أهلا بيك في Quizsoum 👋</h2>
+  <p class="small">اختار اسم مستعار باش نحفظولك نقاطك على الجهاز هذا. ما تكتبش كلمة سر ولا معلومات شخصية.</p>
+  <label for="nickname"><b>الاسم المستعار</b></label>
+  <input id="nickname" maxlength="18" autocomplete="nickname" placeholder="مثلاً: بطل_الأسئلة">
+  <button class="primary" id="loginBtn">ادخل والعب 🚀</button>
+  <p class="small">الحساب في النسخة هاذي محلي على نفس الجهاز والمتصفح، موش حساب إنترنت مشترك.</p>
+ </section>
+
+ <section id="home" class="hidden">
+  <div class="panel">
+   <div class="row"><h2 style="margin:0">مرحبا، <span id="welcome"></span> 👋</h2><button class="secondary" id="logout">خروج</button></div>
+   <div class="statgrid">
+    <div class="stat"><strong id="myPoints">0</strong>مجموع نقاطك</div>
+    <div class="stat"><strong id="myGames">0</strong>الألعاب اللي لعبتها</div>
+   </div>
+  </div>
+  <div class="panel">
+   <h2>اختار التحدّي متاعك</h2>
+   <div class="grid">
+    <div class="tile"><span>🌍</span>ثقافة عامة</div>
+    <div class="tile"><span>🧩</span>ألغاز <div class="small">قريباً</div></div>
+    <div class="tile"><span>⚡</span>ذكاء <div class="small">قريباً</div></div>
+    <div class="tile"><span>🇹🇳</span>تونس <div class="small">قريباً</div></div>
+   </div>
+   <div class="adslot">مساحة إعلانية — تظهر الإعلانات بعد قبول الموقع في شبكة إعلانية</div>
+   <button class="primary" id="start">ابدأ لعبة الثقافة العامة</button>
+  </div>
+  <div class="panel">
+   <h2>🏆 ترتيب اللاعبين على هذا الجهاز</h2>
+   <div id="leaderboard"></div>
+   <p class="small">هذا ترتيب محلي للتجربة فقط. الترتيب العالمي يتطلب قاعدة بيانات مشتركة.</p>
+  </div>
+ </section>
+
+ <section id="game" class="panel hidden" aria-live="polite">
+  <div class="row"><div class="stat" id="count">السؤال 1 / 5</div><div class="stat" id="score">النقاط: 0</div></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="question" id="question"></div><div class="answers" id="answers"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="primary" id="next" disabled>السؤال التالي</button>
+ </section>
+
+ <section id="result" class="panel hidden">
+  <div class="result"><div class="emoji">🏆</div><h2>كمّلت التحدّي!</h2>
+   <div class="score" id="finalScore">0 / 50</div><p id="message"></p>
+   <div class="adslot">مساحة إعلانية — الإعلان الفعلي يتطلب قبول شبكة الإعلانات</div>
+   <button class="primary" id="again">عاود العب</button>
+   <button class="secondary" id="backHome" style="width:100%;margin-top:9px">الصفحة الرئيسية</button>
+  </div>
+ </section>
+</main>
+<footer>Quizsoum © 2026 — نسخة تجريبية تحفظ البيانات على هذا الجهاز</footer>
+<script>
+const KEY="quizsoum_v2_local";
+const questions=[
+ {q:"شنوّة عاصمة تونس؟",a:["صفاقس","تونس","سوسة","القيروان"],c:1},
+ {q:"قدّاش عدد أيّام الأسبوع؟",a:["5","6","7","8"],c:2},
+ {q:"شنوّة الكوكب المعروف بالكوكب الأحمر؟",a:["الزهرة","المريخ","المشتري","زحل"],c:1},
+ {q:"شنوّة أكبر محيط في العالم؟",a:["الأطلسي","الهندي","المتجمّد الشمالي","الهادئ"],c:3},
+ {q:"قدّاش يساوي 9 × 6؟",a:["45","54","56","63"],c:1},
+ {q:"في أي قارة توجد تونس؟",a:["آسيا","أوروبا","إفريقيا","أمريكا الجنوبية"],c:2},
+ {q:"شنوّة اللغة الرسمية في البرازيل؟",a:["الإسبانية","البرتغالية","الفرنسية","الإنجليزية"],c:1},
+ {q:"قدّاش عدد أضلاع المثلث؟",a:["2","3","4","5"],c:1},
+ {q:"شنوّة الحيوان المعروف بسفينة الصحراء؟",a:["الحصان","الجمل","الفيل","الغزال"],c:1},
+ {q:"شنوّة أقرب نجم للأرض؟",a:["الشمس","الشعرى","النسر الواقع","سهيل"],c:0}
+];
+const $=id=>document.getElementById(id);
+let data=load(),player=null,order=[],index=0,points=0,locked=false;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{players:{},current:null}}catch(e){return {players:{},current:null}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function show(id){["login","home","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function enter(){
+ const name=$("nickname").value.trim().replace(/\s+/g," ");
+ if(name.length<2){alert("اكتب اسم مستعار فيه حرفين على الأقل.");return}
+ const key=name.toLocaleLowerCase();
+ if(!data.players[key])data.players[key]={name,points:0,games:0};
+ data.current=key;player=key;save();home();
+}
+function home(){
+ player=data.current;
+ if(!player||!data.players[player]){show("login");return}
+ $("welcome").textContent=data.players[player].name;
+ $("myPoints").textContent=data.players[player].points;
+ $("myGames").textContent=data.players[player].games;
+ renderBoard();show("home");
+}
+function renderBoard(){
+ const players=Object.values(data.players).sort((a,b)=>b.points-a.points||b.games-a.games).slice(0,10);
+ $("leaderboard").innerHTML="";
+ if(!players.length){$("leaderboard").textContent="مازال ما ثماش لاعبين.";return}
+ players.forEach((p,i)=>{
+  const div=document.createElement("div");div.className="rankrow";
+  const rank=document.createElement("div");rank.className="ranknum";rank.textContent=i+1;
+  const name=document.createElement("div");name.className="rankname";name.textContent=p.name+(data.players[player]===p?" (إنت)":"");
+  const pts=document.createElement("div");pts.className="rankpoints";pts.textContent=p.points+" نقطة";
+  div.append(rank,name,pts);$("leaderboard").appendChild(div);
+ });
+}
+function start(){
+ order=[...questions.keys()].sort(()=>Math.random()-.5).slice(0,5);
+ index=0;points=0;show("game");render();
+}
+function render(){
+ locked=false;const item=questions[order[index]];
+ $("count").textContent=`السؤال ${index+1} / 5`;$("score").textContent=`النقاط: ${points}`;
+ $("bar").style.width=`${index/5*100}%`;$("question").textContent=item.q;$("feedback").textContent="";
+ $("next").disabled=true;$("next").textContent=index===4?"شوف النتيجة":"السؤال التالي";$("answers").innerHTML="";
+ item.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=answer;b.addEventListener("click",()=>choose(i));$("answers").appendChild(b)});
+}
+function choose(choice){
+ if(locked)return;locked=true;const item=questions[order[index]];
+ [...$("answers").children].forEach((b,i)=>{b.disabled=true;if(i===item.c)b.classList.add("correct");else if(i===choice)b.classList.add("wrong")});
+ if(choice===item.c){points+=10;$("feedback").textContent="إجابة صحيحة! يعطيك الصحة 🎉"}
+ else{$("feedback").textContent=`موش صحيح. الإجابة الصحيحة: ${item.a[item.c]}`}
+ $("score").textContent=`النقاط: ${points}`;$("next").disabled=false;
+}
+function next(){
+ if(!locked)return;index++;
+ if(index<5){render();return}
+ data.players[player].points+=points;data.players[player].games+=1;save();
+ $("bar").style.width="100%";$("finalScore").textContent=`${points} / 50`;
+ $("message").textContent=points===50?"ممتاز! جاوبت على الكل صحيح 🌟":points>=30?"باهي برشة! واصل التحدّي 💪":"يعطيك الصحة على المحاولة! جرّب مرة أخرى 📚";
+ show("result");
+}
+$("loginBtn").addEventListener("click",enter);
+$("nickname").addEventListener("keydown",e=>{if(e.key==="Enter")enter()});
+$("start").addEventListener("click",start);$("again").addEventListener("click",start);
+$("next").addEventListener("click",next);$("backHome").addEventListener("click",home);
+$("logout").addEventListener("click",()=>{data.current=null;player=null;save();$("nickname").value="";show("login")});
+if(data.current&&data.players[data.current])home();else show("login");
+</script>
+</body>
+</html>
